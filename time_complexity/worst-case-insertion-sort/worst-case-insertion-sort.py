@@ -31,7 +31,7 @@ def track_time_complexity( decksizes, repetition_limit ):
             sort_list( state )
             sum = sum + ( time.time() - start )
         average = sum / repetition_limit
-        print( sum )
+        print( "Time for decksize ", decksizes[n], " and ", repetition_limit, " repetitions: ", sum, " seconds.", sep='' )
         results.append ( average )
     return results
 
