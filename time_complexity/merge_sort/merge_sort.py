@@ -7,8 +7,10 @@ def splitting_into_pairs( array ):
     if middle_index > 2:
         left_array = splitting_into_pairs(left_array)
         right_array = splitting_into_pairs(right_array)
-    elif len( right_array ) > 2
-        right_array =
+    #elif middle_index == 3:
+    #    x = 
+    #    y
+    #    right_array = right_array//2
     return [left_array, right_array]
 
 # def merge_pairs( pairs )
