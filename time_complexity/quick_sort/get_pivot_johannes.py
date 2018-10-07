@@ -1,7 +1,7 @@
 def get_pivot(list):
     low = list[0]
-    high = list[7]
-    mid = len(list) // 2
+    high = list[-1]
+    mid = list[len(list) // 2]
 
     print(low)
     print(mid)
