@@ -22,7 +22,7 @@ def get_pivot(list):
 
     return result
 
-list = [8, 6, 5, 1, 3, 2, 9, 7]
-#list = [7, 5, 3, 2, 6, 8, 9, 1]
+#list = [8, 6, 5, 1, 3, 2, 9, 7]
+list = [7, 5, 3, 2, 6, 8, 9, 1]
 print(list)
 print(get_pivot(list))
