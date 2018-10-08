@@ -16,12 +16,18 @@ def find_pivot_index(list):
         return 1
 
 def swap(list, first_index, second_index):
+    """
+    Swaps two elements in a list
+    """
     temporary_value = list[first_index]
     list[first_index] = list[second_index]
     list[second_index] = temporary_value
     return list
 
 def quick_sort(list):
+    """
+    Sorts a list of numbers in ascending order
+    """
     print(list)
     # No border sorting needed if there are less than 3 elements
     if len(list) == 0:
