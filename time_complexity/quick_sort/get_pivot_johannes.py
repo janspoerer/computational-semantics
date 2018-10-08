@@ -1,22 +1,28 @@
 def get_pivot(list):
-    low = list[0] 
-    high = list[7]
-    mid = (low + high - 1) // 2
+    low = list[0]
+    high = list[-1]
+    mid = len(list) // 2
 
-    if mid <= low <= high: 
-        pivot = low
-        return pivot
-        if low <= mid <= high: 
-            pivot = mid
-            return pivot
-            if low <= high <= mid: 
-                pivot = high
-                return pivot
-                if mid <= high <= low:
-                    pivot = high
-                    return pivot
+    print(low)
+    print(mid)
+    print(high)
 
-list = [7, 5, 3, 2, 6, 8, 9, 1]
+    if (mid <= low <= high):
+        result = low
+    if (high <= low <= mid):
+        result = low
+    if (low <= mid <= high):
+        result = mid
+    if (high <= mid <= low):
+        result = mid
+    if (low <= high <= mid):
+        result = high
+    if (mid <= high <= low):
+        result = high
+
+    return result
+
+list = [8, 6, 5, 1, 3, 2, 9, 7]
+#list = [7, 5, 3, 2, 6, 8, 9, 1]
 print(list)
-get_pivot(list)
-print(pivot)
+print(get_pivot(list))
