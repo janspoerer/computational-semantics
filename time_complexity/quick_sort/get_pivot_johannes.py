@@ -1,23 +1,23 @@
 def get_pivot(list):
-    low = list[0]
-    high = list[-1]
-    mid = list[len(list) // 2]
+    low = 0
+    high = -1
+    mid = len(list) // 2
 
-    print(low)
-    print(mid)
-    print(high)
+    print(low, list[low])
+    print(mid, list[mid])
+    print(high, list[high])
 
-    if (mid <= low <= high):
+    if (list[mid] <= list[low] <= list[high]):
         result = low
-    if (high <= low <= mid):
+    if (list[high] <= list[low] <= list[mid]):
         result = low
-    if (low <= mid <= high):
+    if (list[low] <= list[mid] <= list[high]):
         result = mid
-    if (high <= mid <= low):
+    if (list[high] <= list[mid] <= list[low]):
         result = mid
-    if (low <= high <= mid):
+    if (list[low] <= list[high] <= list[mid]):
         result = high
-    if (mid <= high <= low):
+    if (list[mid] <= list[high] <= list[low]):
         result = high
 
     return result
