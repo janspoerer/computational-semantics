@@ -107,21 +107,72 @@ def quick_sort(list):
 
     return result
 
-results = []
-decksizes = [10, 100, 1000, 10000]
-repetition_limit = 100
+results_best = []
+results_base = []
+results_worst = []
+decksizes = [10, 100, 1000]
+repetition_limit = 50
 
+# Best case (already sorted)
+for n in range(0, len(decksizes)):
+    sum = 0
+    for repetition in range( 1, repetition_limit ):
+        state = list(range( 1, decksizes[n] ))
+        state.sort()
+        start = time.time()
+        quick_sort(state)
+        sum = sum + ( time.time() - start )
+    average = sum / repetition_limit
+    print(sum)
+    results_best.append ( average )
+
+# Base case (random)
 for n in range(0, len(decksizes)):
     sum = 0
     for repetition in range( 1, repetition_limit ):
         state = list(range( 1, decksizes[n] ))
         random.shuffle( state )
         start = time.time()
+        quick_sort(state)
         sum = sum + ( time.time() - start )
     average = sum / repetition_limit
     print(sum)
-    results.append ( average )
+    results_base.append ( average )
 
-plt.plot( results )
-plt.ylabel('time complexity')
+# Worst case (reverse sorted, descending)
+for n in range(0, len(decksizes)):
+    sum = 0
+    for repetition in range( 1, repetition_limit ):
+        state = list(range( 1, decksizes[n] ))
+        state.sort(reverse=True)
+
+        # Causing some bad pivots
+        state[0]
+        state[1]
+        state[2]
+        state[3]
+        state[len(state) // 2]
+        state[(len(state) // 2) + 1]
+        state[(len(state) // 2) + 2]
+        state[(len(state) // 2) + 3]
+
+        start = time.time()
+        quick_sort(state)
+        sum = sum + ( time.time() - start )
+    average = sum / repetition_limit
+    print(sum)
+    results_worst.append ( average )
+
+print(results_best)
+x = decksizes
+# create an index for each tick position
+xi = [i for i in range(0, len(x))]
+plt.plot(xi, results_best, color="green")
+plt.plot(xi, results_base, color="orange")
+plt.plot(xi, results_worst, color="red")
+# plt.xticks([1, 2, 3, 4])
+plt.ylabel("time complexity")
+plt.xlabel("length of list")
+plt.xticks(xi, x)
+plt.title('Compare best, base, and worst cases')
 plt.show()
