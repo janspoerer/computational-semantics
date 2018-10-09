@@ -110,7 +110,7 @@ def quick_sort(list):
 results_best = []
 results_base = []
 results_worst = []
-decksizes = [10, 100, 1000]
+decksizes = [10, 100, 500, 1000]
 repetition_limit = 50
 
 # Best case (already sorted)
@@ -147,6 +147,7 @@ for n in range(0, len(decksizes)):
         state.sort(reverse=True)
 
         # Causing some bad pivots
+        # That makes it even worse
         state[0]
         state[1]
         state[2]
