@@ -34,17 +34,14 @@ class Deck:
 
     def split_in_half(self):
         mid = len(self.cards) // 2
-        left = self.cards[:mid]
-        right = self.cards[mid:]
-        return [left, right]
+        return [self.cards[:mid], self.cards[mid:]]
 
     def shuffle(self):
         return random.sample(self.cards, len(self))
 
 class Hand:
-    def __init__(self, cards, player):
+    def __init__(self, cards):
         self.cards = cards
-        self.player = player
 
     def __len__(self):
         return len(self.cards)
@@ -79,22 +76,30 @@ class Player:
 ######################
 print("Welcome to War, let's begin...")
 deck = Deck()
-computer = Player("Computer", deck.split_in_half()[0])
-player = Player("Player1", deck.split_in_half()[1])
+computer = Player("Computer", Hand(deck.split_in_half()[0]))
+player = Player("Player", Hand(deck.split_in_half()[1]))
 
 active = True
-while active:
+while (len(computer.hand) > 0) and (len(player.hand) > 0):
     user_input = input("Please type y to continue playing: ")
+
     if (user_input == "y") or (user_input == "Y"):
         computer_card = computer.turn_around_card()
         player_card = player.turn_around_card()
-        if computer_card < player_card:
-            player.hand.extend([computer_card, player_card])
-        elif computer_card < player_card: # If values are equal, cards are just put back
-            player.hand.append(player_card)
-            computer.hand.append(computer_card)
+
+        computer_rank = Deck.RANKS.index(computer_card[1:])
+        player_rank = Deck.RANKS.index(player_card[1:])
+
+        if computer_rank < player_rank:
+            player.hand.cards.extend([computer_card, player_card])
+            print(player.name, " got a card! Player: ", str(len(player.hand)), ", Computer: ", str(len(computer.hand)))
+        elif player_rank == player_rank: # If values are equal, cards are just put back
+            player.hand.cards.append(player_card)
+            computer.hand.cards.append(computer_card)
+            print("Tie!")
         else:
-            computer.hand.extend([player_card, computer_card])
+            computer.hand.cards.extend([player_card, computer_card])
+            print(computer.name, " got a card! Player: ", str(len(player.hand)), ", Computer: ", str(len(computer.hand)))
     else:
         break
 
